@@ -1,0 +1,180 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Courier New", Courier, monospace, Arial, sans-serif;
+  overflow: hidden;
+}
+
+#main-header {
+  position: fixed;
+  margin-top: 2em;
+  width: 100%;
+  z-index: 100;
+  transition: top 0.3s, bottom 0.3s;
+  opacity: 0;
+}
+
+/* New styles for fade-in and fade-out */
+#main-header.fade-in {
+  transition: opacity 0.5s ease-in, top 0.3s, bottom 0.3s;
+  opacity: 1;
+}
+
+#main-header.fade-out {
+  transition: opacity 0.1s ease-out, top 0.3s, bottom 0.3s;
+  opacity: 0;
+}
+
+#sitewide-links {
+  padding: 20px 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+nav menu {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav menu li {
+  margin: 0 3rem;
+}
+
+nav menu li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2em;
+}
+
+main {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.page {
+  height: 100vh;
+  width: 100vw;
+  scroll-snap-align: start;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+h1 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 5rem;
+}
+
+.background {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.nebula {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30vh;
+  background-image: url("../assets/art/Images-Starry-Night-Wallpapers-HD-2955665120.jpg");
+  background-size: cover;
+  background-position: top;
+  opacity: 0.6;
+  z-index: 10;
+  cursor: pointer;
+  transition: height 2s ease-in-out, opacity 2s ease-in-out;
+}
+
+.nebula:hover {
+  height: 50vh;
+  opacity: 1;
+}
+
+.mountain {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 75%;
+  background-image: url("../assets/art/pngtree-creative-ink-mountain-peak-vector-image_2286296.jpg");
+  background-size: contain;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  z-index: 40;
+  pointer-events: none;
+}
+
+#magical-forest {
+  background-image: url(../images/mountain-peak-clouds-misty-shrouded-rocky-spire-evergreen-forest-scenic-landscape-photography-HD.png);
+  z-index: 3;
+}
+
+#coastal-kingdom {
+  background-image: url(../images/dramatic-cliff-view-stormy-sea-waterfalling-into-bottomless-pit-mountain-horizon-adventure-nature-photography.jpg);
+  z-index: 4;
+}
+
+#desert-oasis {
+  background-image: url(../images/colossal-mountain-swirl-ocean-calcified-wood-rock-twisting-arch-waterfall-pit-treacherous-rocks-textured.jpg);
+  z-index: 5;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+.blob {
+  position: absolute;
+  z-index: 70;
+  display: grid;
+  width: 50vw;
+  grid-template-columns: auto 1fr; /* Define columns */
+  align-items: center;
+  gap: 10px; /* Adjust spacing as needed */
+}
+
+#sky-islands .blob {
+  grid-template-columns: 1 !important;
+}
+
+.blob h2,
+.blob p,
+.blob ul {
+  background-color: slategray;
+}
+
+.blob img {
+  grid-column: 1; /* Place icon in first column */
+  margin: 3em 1em 1em 1em;
+  padding: 1em;
+  height: 10em;
+  width: auto;
+}
+
+.text-container {
+  grid-column: 2; /* Place text in second column */
+}

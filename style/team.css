@@ -1,0 +1,212 @@
+/* Basic reset */
+body,
+h1,
+h4,
+p,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  background-image: url("/root/assets/art/cloud-nature-tree-fog-HD-wallpaper-alphacoders.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header#main-header {
+  text-align: center;
+  background-color: rgba(0, 51, 102, 0.8);
+  color: white;
+  padding: 20px;
+  font-size: 2em;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+section.boat {
+  display: grid;
+  grid-template-areas:
+    "job1 job2 job3 job4 job9"
+    "job5 boat boat job6 job10"
+    "job7 boat boat job8 job11";
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 20px;
+  width: 70vw;
+  height: 90vh;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+section.boat img {
+  grid-area: boat;
+  justify-self: center;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+ul {
+  list-style-type: none;
+  display: contents;
+}
+
+li {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+li.mystic {
+  grid-area: job1;
+}
+li.cook {
+  grid-area: job2;
+}
+li.valet {
+  grid-area: job3;
+}
+li.salesman {
+  grid-area: job4;
+}
+li.tester {
+  grid-area: job5;
+}
+li.designer {
+  grid-area: job6;
+}
+li.builder {
+  grid-area: job7;
+}
+li.warrior {
+  grid-area: job8;
+}
+li.job9 {
+  grid-area: job9;
+}
+li.job10 {
+  grid-area: job10;
+}
+li.job11 {
+  grid-area: job11;
+}
+
+h4 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+details {
+  background-color: #e7e7e7;
+  display: inline;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  overflow-y: scroll;
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  cursor: pointer;
+}
+
+progress {
+  width: 100%;
+  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #ddd;
+}
+
+progress::-webkit-progress-value {
+  background-color: #003366;
+  border-radius: 5px 0 0 5px;
+}
+
+progress::-moz-progress-bar {
+  background-color: #003366;
+  border-radius: 5px 0 0 5px;
+}
+
+aside {
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-left: 4px solid #003366;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-style: italic;
+  text-align: center;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  section.boat {
+    grid-template-areas:
+      "job1"
+      "job2"
+      "job3"
+      "job4"
+      "job5"
+      "job6"
+      "boat"
+      "job7"
+      "job8"
+      "job9"
+      "job10"
+      "job11";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  section.boat img {
+    width: 80%;
+  }
+
+  li {
+    margin: 0 auto;
+    width: 80%;
+  }
+}

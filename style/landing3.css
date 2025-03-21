@@ -90,12 +90,501 @@ main {
   align-items: center;
 }
 
-h1 {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  font-size: 5rem;
-  color: rgb(0, 0, 0);
+.page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  z-index: 70;
+  width: 80%;
+  max-width: 1200px;
+  height: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  top: calc(10vh + 60px);
+  box-sizing: border-box;
+  padding: 5rem 2rem 3rem;
+  
+  /* Reset to use grid layout */
+  display: grid;
+  grid-template-areas:
+    "title title title"
+    "icon content content";
+  grid-template-columns: minmax(150px, 1fr) minmax(0, 4fr) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-gap: 2rem 3rem;
+}
+
+.blob h1,
+.blob h2 {
+  grid-area: title;
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  color: white;
   mix-blend-mode: difference;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.blob h1 {
+  font-size: 4.5rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.05em;
+  max-width: 80vw;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.blob h2 {
+  font-size: 3.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  display: block;
+  text-align: center;
+  max-width: 60vw;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 1rem;
+}
+
+.blob h2::after {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 1px;
+  bottom: -10px;
+  left: 20%;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );}
+
+.blob img {
+  grid-area: icon;
+  align-self: start;
+  justify-self: center;
+  position: relative; /* Reset from absolute */
+  height: 120px;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+  top: 0; /* Reset positioning */
+  left: 0;
+  transform: none;
+  margin-top: 1rem; /* Provide a bit of top padding to align with text */
+}
+
+.blob img:hover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.text-container {
+  grid-area: content;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 2rem;
+  border-radius: 12px;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.4) 60%,
+    rgba(0, 0, 0, 0.2) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.blob p,
+.blob li {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.blob h2 {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  margin-bottom: 3rem;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.6) 40%,
+    rgba(0, 0, 0, 0.4) 70%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.blob p::before, .blob li::before, .blob blockquote::before {
+  display: none;
+}
+
+.blob p, .blob li, .blob h1, .blob h2 {
+  position: relative;
+}
+
+.blob blockquote {
+  font-style: italic;
+  border-left: 3px solid white;
+  padding-left: 1rem;
+  margin-left: 0;
+  color: white;
+  mix-blend-mode: difference;
+}
+
+.blob ul,
+.blob ol {
+  padding-left: 1.5rem;
+  max-width: 40vw;
+}
+
+.blob li {
+  margin-bottom: 0.5rem;
+}
+
+.blob aside {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: #ddd;
+  max-width: 40vw;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.blob aside h3,
+.blob aside h4 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.blob table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  max-width: 40vw;
+}
+
+.blob th, 
+.blob td {
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+
+.blob th {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.blob h1, .blob h2, .blob p, .blob li {
+  text-shadow: 
+    0px 1px 1px rgba(0, 0, 0, 0.8),
+    0px -1px 1px rgba(0, 0, 0, 0.8),
+    1px 0px 1px rgba(0, 0, 0, 0.8),
+    -1px 0px 1px rgba(0, 0, 0, 0.8);
+}
+
+.blob h1::after, .blob h2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 0.3;
+  background: rgba(255, 255, 255, 0.4);
+  pointer-events: none;
+}
+
+/* Add an option for a minimalist approach with readable text */
+
+/* Reset blend modes to try a different approach */
+.blend-option-minimal .blob h1,
+.blend-option-minimal .blob h2,
+.blend-option-minimal .blob p,
+.blend-option-minimal .blob li {
+  mix-blend-mode: normal;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.7); /* Consistent text shadow */
+  color: white;
+}
+
+/* Customize gradient sizes for different text elements */
+.blend-option-minimal .blob h1::before {
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 90%);
+}
+
+.blend-option-minimal .blob h2::before {
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0) 90%);
+}
+
+.blend-option-minimal .blob p::before {
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0) 80%);
+  top: -0.05em;
+  bottom: -0.05em;
+}
+
+.blend-option-minimal .blob li::before {
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 75%);
+  top: -0.05em;
+  bottom: -0.05em;
+}
+
+/* Create a subtle backdrop just behind the text - center fading out */
+.blend-option-minimal .blob h1::before,
+.blend-option-minimal .blob h2::before,
+.blend-option-minimal .blob p::before,
+.blend-option-minimal .blob li::before {
+  content: "";
+  position: absolute;
+  top: -0.1em;
+  left: -0.5em;
+  right: -0.5em;
+  bottom: -0.1em;
+  border-radius: 0.2em;
+  z-index: -1;
+  display: block;
+}
+
+/* Better handling for line breaks in paragraphs */
+.blend-option-minimal .blob p, 
+.blend-option-minimal .blob li {
+  /* Apply specific styling to each paragraph line */
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0.1em 0.2em;
+}
+
+/* Ensure proper spacing between paragraphs */
+.blend-option-minimal .text-container p {
+  display: block;
+  margin-bottom: 0.7em;
+}
+
+/* Adjust width constraints for better responsive design */
+.blob h1 {
+  max-width: 80vw;
+  width: auto;
+  margin: 0 auto 0.5em;
+}
+
+.blob h2 {
+  max-width: 60vw;
+  width: auto;
+  margin: 0 auto 0.5em;
+}
+
+.text-container {
+  max-width: 50vw;
+}
+
+/* Restore essential base styles */
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  width: 80vw;
+  max-width: 80vw;
+  margin: 0 auto;
+  color: white;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 3rem;
+  text-align: center;
+  width: 60vw;
+  max-width: 60vw;
+  margin: 0 auto;
+  color: white;
+  font-weight: bold;
+}
+
+p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: white;
+}
+
+/* Fix for landing section - restore specific stylings */
+#landing .blob {
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Remove conflicting display property */
+
+/* Special styling for landing page h1 */
+#landing .blob h1 {
+  font-size: 5rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  /* Enhance with subtle glow */
+  text-shadow: 
+    0 0 5px rgba(255,255,255,0.3),
+    0 0 10px rgba(255,255,255,0.2);
+  background-image: linear-gradient(45deg, #ffffff, #f0f0f0);
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.9;
+}
+
+/* Ensure centered headings on all screen sizes */
+.blob h1, .blob h2 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Article spacing and organization */
+article.page {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ensure proper vertical spacing for the blob in each section */
+article.page .blob {
+  margin: 0 auto;
+}
+
+/* Clear extra space on mobile */
+@media screen and (max-width: 768px) {
+  article.page {
+    padding-top: 8vh;
+  }
+}
+
+/* Mobile adjustments for the grid layout */
+@media screen and (max-width: 768px) {
+  .blob {
+    width: 90%;
+    top: calc(8vh + 50px);
+    padding: 3rem 1.5rem 2rem;
+    grid-template-areas:
+      "title"
+      "icon"
+      "content";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-gap: 1.5rem;
+  }
+  
+  .blob img {
+    margin: 0 auto;
+    height: 100px; /* Slightly smaller on mobile */
+  }
+  
+  .text-container {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .blob h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .blob h1 {
+    font-size: 3.2rem;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1.2rem;
+  }
+  
+  #landing .blob h1 {
+    font-size: 4rem;
+    max-width: 100%;
+  }
+  
+  .text-container {
+    padding: 1.5rem;
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.65) 50%,
+      rgba(0, 0, 0, 0.4) 75%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+  
+  .blob h2 {
+    padding: 1rem 1.5rem;
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.65) 50%,
+      rgba(0, 0, 0, 0.3) 85%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+}
+
+/* Small mobile devices */
+@media screen and (max-width: 480px) {
+  .blob {
+    width: 95%;
+    padding: 2rem 1rem 1.5rem;
+    grid-gap: 1rem;
+  }
+  
+  .blob h1 {
+    font-size: 2.8rem;
+  }
+  
+  .blob h2 {
+    font-size: 2.4rem;
+  }
+  
+  #landing .blob h1 {
+    font-size: 3.2rem;
+  }
+  
+  .blob img {
+    height: 80px;
+  }
 }
 
 .background {
@@ -167,7 +656,7 @@ width:100vw;
 }
 
 #magical-forest {
-  background-image: url(/root/images/this\ one\ is\ really\ really\ fire.jpeg);
+  background-image: url(/assets/fog-shrouded-mountain-green-slopes.jpeg);
   z-index: 3;
 }
 
@@ -182,24 +671,24 @@ width:100vw;
 }
 
 #midway-kingdom {
-  background-image: url(../images/mountain-peak-clouds-misty-shrouded-rocky-spire-evergreen-forest-scenic-landscape-photography-HD.png);
+  background-image: url(/assets/mountain-valley-cliff-edge-waterfalls-fog.png);
 
   z-index: 4;
 }
 
 #caves {
-  background-image: url(../images/HELL_I_digicover.jpg);
+  background-image: url(/assets/dark-cave-waterfall-traverse-person-path-cliff.png);
   
 }
 
 #peer-into-abyss {
-  background-image: url(../images/dramatic-cliff-view-stormy-sea-waterfalling-into-bottomless-pit-mountain-horizon-adventure-nature-photography.jpg);
+  background-image: url(/assets/fisheye-cliff-hole-ocean-waterfall-enclosed.jpg);
 
   z-index: 5;
 }
 
 #ocean-spire {
-  background-image: url(../images/colossal-mountain-swirl-ocean-calcified-wood-rock-twisting-arch-waterfall-pit-treacherous-rocks-textured.jpg);
+  background-image: url(/assets/fantasy-island-mountain-ocean-abyss-stairs.png);
   z-index: 5;
 }
 
@@ -208,161 +697,95 @@ width:100vw;
   background-size: contain;
 }
 
-#landing h1 {
-  padding: 0em;
-  margin: 0;
-  letter-spacing: 0.4em;
-  text-align: center;
-  font-size: (100vw * 100vh);
-  color: white;
-  mix-blend-mode: hard-light;
-  text-shadow: 1px black;
-  background-color: #666666;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
-}
-
 h2 {
   font-size: 3rem;
   text-align: center;
 }
 
-p {
-  font-size: 1.5rem;
-}
+/* Refined gradient effects and text styles */
 
-#landing .blob {
-  z-index: 90;
-  display: inline-flex;
-  flex-direction: column;
-  width: fit-content;
-  align-items: center;
-  justify-content: center;
-}
-
-.blob {
-  position: absolute;
-  z-index: 70;
-  width: 80%; /* Fixed width instead of fit-content for better structure */
-  max-width: 1200px; /* Maximum width to prevent stretching on larger screens */
-  height: auto; /* Allow height to adjust based on content */
-  max-height: 80vh; /* Maximum height to keep it visible on screen */
-  margin: 2rem;
-  overflow-y: auto; /* Allow scrolling if content is too long */
-  
-  display: grid;
-  grid-template-columns: minmax(120px, auto) 1fr; /* Fixed size for icon column */
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    "header header"
-    "icon content";
-  gap: 20px; /* Increased spacing */
-  
-  color: #fff; /* White text for better readability */
-  background-color: rgba(0, 0, 0, 0.7); /* Darker semi-transparent background */
-  backdrop-filter: blur(5px); /* Blur effect for modern browsers */
-  border-radius: 1rem;
-  border: solid 1px rgba(255, 255, 255, 0.2); /* Subtle border */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Add shadow for depth */
-  
-  padding: 2rem;
-}
-
-.blob h2 {
-  grid-area: header;
-  margin: 0 0 1rem 0;
-  font-size: 2.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  padding-bottom: 0.5rem;
-  color: #fff;
-}
-
-.blob img {
-  grid-area: icon;
-  height: 100px;
-  width: auto;
+/* Restore list styling */
+.blob ul,
+.blob ol {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
   max-width: 100%;
-  object-fit: contain;
-  margin: 0;
-  padding: 0;
-  align-self: start;
-  justify-self: center;
+  margin: 0.5rem 0 1.5rem;
+  padding-left: 2rem;
 }
 
+/* Enhance the readability of links */
+.blob a {
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  text-underline-offset: 3px;
+  transition: all 0.3s ease;
+}
+
+.blob a:hover {
+  text-decoration-color: rgba(255, 255, 255, 1);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Fix for mask property compatibility */
+.text-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  padding: 2px; /* Control the thickness of the glow */
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Additional refinements for the gradient container */
 .text-container {
-  grid-area: content;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  /* Enhance the overall glow effect with an inner shadow */
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden; /* Ensure the gradient stays within borders */
 }
 
-.blob p,
-.blob ul,
-.blob ol {
-  color: #eee;
-  margin: 0.5rem 0;
-  line-height: 1.6;
+/* Dark mode enhancements */
+@media (prefers-color-scheme: dark) {
+  .text-container {
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.7) 40%,
+      rgba(0, 0, 0, 0.5) 60%,
+      rgba(0, 0, 0, 0.3) 80%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
 }
 
-.blob ul,
-.blob ol {
-  padding-left: 1.5rem;
-}
-
-.blob li {
-  margin-bottom: 0.5rem;
-}
-
-.blob aside {
-  margin-top: 2rem;
-  padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  font-size: 0.9rem;
-  color: #ddd;
-}
-
-.blob aside h3,
-.blob aside h4 {
-  margin-top: 0;
-  color: #fff;
-}
-
-.blob table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 1rem 0;
-}
-
-.blob th, 
-.blob td {
-  padding: 0.5rem;
+/* Refine button styling */
+.blob button, 
+.blob .button {
+  background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
-  text-align: left;
+  border-radius: 6px;
+  padding: 0.5rem 1.5rem;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
 }
 
-.blob th {
-  background-color: rgba(255, 255, 255, 0.1);
+.blob button:hover, 
+.blob .button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
-
-/* Mobile responsiveness */
-@media screen and (max-width: 768px) {
-  .blob {
-    width: 90%;
-    margin: 1rem;
-    padding: 1rem;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "header"
-      "icon"
-      "content";
-  }
-  
-  .blob img {
-    margin: 0 auto 1rem auto;
-  }
-}
-

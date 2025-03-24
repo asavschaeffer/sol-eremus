@@ -3,114 +3,500 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/root/style/landing3.css" />
-    <link rel="stylesheet" href="/root/style/works.css" />
-    <title>Works</title>
-    <script src="/root/scripts/header-cloud-adjuster.js" defer></script>
+    <title>Mountain Piercing Through Planetary Clouds</title>
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #000011;
+      }
+      canvas {
+        display: block;
+      }
+      .info {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: white;
+        font-family: monospace;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+      }
+    </style>
   </head>
   <body>
-    <header id="main-header">
-      <nav id="sitewide-links">
-        <menu>
-          <li>
-            <a target="_blank" href="../root/building/">Mission Statement</a>
-          </li>
-          <li><a href="/root/nebula/index.html">Blobs</a></li>
-          <li><a href="/root/team/index.html">Team</a></li>
-          <li><a href="/root/contact/index.html">Contact</a></li>
-        </menu>
-      </nav>
-    </header>
-    <main id="works">
-      <article id="landing" class="page sky-islands">
-        <div class="background">
-          <div class="nebula-container">
-            <a href="/root/nebula/index.html"
-              ><img
-                src="/root/assets/art/Images-Starry-Night-Wallpapers-HD-2955665120.jpg"
-                alt="starry night"
-            /></a>
-          </div>
-          <div class="mountain">
-            <a href="/root/index3.html"
-              ><img
-                src="/root/assets/art/olympus-mons-cut-out-low-file-size-nasa-planet-space-mountain.png"
-                alt="mountain peak"
-            /></a>
-          </div>
-        </div>
+    <div class="info">Mountains Piercing Through Planetary Cloud Layers</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Initialize scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(
+          75,
+          window.innerWidth / window.innerHeight,
+          0.1,
+          10000
+        );
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-        <section class="blob">
-          <h1>works</h1>
-          <p style="float: left">
-            creating interactice software & data gathering devices using:
-          </p>
-          <ul>
-            <li><a href="#magical-forest">Informed Design</a></li>
-            <li><a href="#coastal-kingdom">Intelligent Engineering</a></li>
-            <li><a href="#desert-oasis">Holistic Worldview</a></li>
-          </ul>
-          <p style="float: right">to make the kids alright again</p>
-        </section>
-      </article>
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000022);
+        document.body.appendChild(renderer.domElement);
 
-      <article id="magical-forest" class="page">
-        <section class="blob">
-          <img src="/assets/icons/balance.png" alt="icon" />
-          <h2>Informed Design</h2>
-          <div class="text-container">
-            <p>
-              leveraging all that we know using the cognitive systems research
-              repository in order to get the frameworks right way before the
-              testing phase.
-            </p>
-            <ul>
-              <li>
-                timings for interactive elements of software & hardware are
-                absolutely one of the most essential and overlooked elements.
-                Just changing the timings, you will see, can have a massive
-                difference in the long-term interaction life-cycle between a
-                person and a product.
-              </li>
-              <li>optimization of modes of interaction</li>
-              <li>
-                overall choice of theme and underlying ideas in all their ways
-                of expressing themselves
-              </li>
-            </ul>
-          </div>
-        </section>
-      </article>
+        // Camera position - above looking down at an angle
+        camera.position.set(0, 300, 600);
+        camera.lookAt(0, 0, -500);
 
-      <article id="coastal-kingdom" class="page">
-        <section class="blob">
-          <img src="/assets/icons/picture.png" alt="" />
-          <h2>Intelligence Development</h2>
-          <div class="text-container">
-            <p>
-              Creating streamlined work pipelines, project management
-              strategies, efficient engineering of software, and yes of course
-              LLMs to create cognitive systems, or intelligent interactive
-              systems,
-            </p>
-          </div>
-        </section>
-      </article>
+        // Add ambient light
+        const ambientLight = new THREE.AmbientLight(0x333344);
+        scene.add(ambientLight);
 
-      <article id="desert-oasis" class="page">
-        <section class="blob">
-          <img src="" alt="" />
-          <h2>Desert Oasis</h2>
-          <div class="text-container">
-            <p>Find tranquility in the heart of our vast desert landscapes.</p>
-          </div>
-        </section>
-      </article>
-    </main>
-    <footer>
-      <menu
-        ><li><a href="../root/legal/index.html">Legal</a></li></menu
-      >
-    </footer>
+        // Add moonlight
+        const moonLight = new THREE.DirectionalLight(0x8888ff, 1);
+        moonLight.position.set(100, 300, 100);
+        scene.add(moonLight);
+
+        // Add some soft directional light to highlight mountain peaks
+        const peakLight = new THREE.DirectionalLight(0xffffdd, 0.7);
+        peakLight.position.set(-100, 400, 200);
+        scene.add(peakLight);
+
+        // Create a starry background
+        const createStars = () => {
+          const starsGeometry = new THREE.BufferGeometry();
+          const starsMaterial = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 1.2,
+          });
+
+          const starsVertices = [];
+          for (let i = 0; i < 10000; i++) {
+            const x = (Math.random() - 0.5) * 10000;
+            const y = (Math.random() - 0.5) * 5000 + 1000; // More stars above
+            const z = (Math.random() - 0.5) * 10000 - 2000; // Push stars back
+            starsVertices.push(x, y, z);
+          }
+
+          starsGeometry.setAttribute(
+            "position",
+            new THREE.Float32BufferAttribute(starsVertices, 3)
+          );
+          const stars = new THREE.Points(starsGeometry, starsMaterial);
+          scene.add(stars);
+          return stars;
+        };
+
+        const stars = createStars();
+
+        // Create a moon
+        const createMoon = () => {
+          const moonGeometry = new THREE.SphereGeometry(100, 32, 32);
+          const moonMaterial = new THREE.MeshBasicMaterial({ color: 0xffffee });
+          const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+          moon.position.set(600, 400, -2000);
+          scene.add(moon);
+
+          // Create a subtle glow effect around the moon
+          const moonGlowGeometry = new THREE.SphereGeometry(130, 32, 32);
+          const moonGlowMaterial = new THREE.MeshBasicMaterial({
+            color: 0xaaaaff,
+            transparent: true,
+            opacity: 0.3,
+          });
+          const moonGlow = new THREE.Mesh(moonGlowGeometry, moonGlowMaterial);
+          moonGlow.position.copy(moon.position);
+          scene.add(moonGlow);
+
+          return { moon, moonGlow };
+        };
+
+        const moonObj = createMoon();
+
+        // Create the main mountain
+        const createMountains = () => {
+          // Create the central mountain peak
+          const mountainGeometry = new THREE.ConeGeometry(300, 600, 5);
+          const mountainMaterial = new THREE.MeshStandardMaterial({
+            color: 0x444455,
+            roughness: 0.9,
+            metalness: 0.1,
+          });
+          const mountain = new THREE.Mesh(mountainGeometry, mountainMaterial);
+          mountain.position.set(0, -250, -600);
+          mountain.rotation.y = Math.PI / 5; // Rotate for more interesting shape
+          scene.add(mountain);
+
+          // Additional mountain peaks to create a range
+          const peaks = [
+            { x: -500, y: -280, z: -800, scale: 1.5 },
+            { x: 500, y: -270, z: -900, scale: 1.2 },
+            { x: -300, y: -260, z: -1000, scale: 0.8 },
+            { x: 300, y: -250, z: -800, scale: 0.9 },
+          ];
+
+          const mountainPeaks = [];
+          peaks.forEach((peak) => {
+            const peakGeo = new THREE.ConeGeometry(
+              300 * peak.scale,
+              600 * peak.scale,
+              5
+            );
+            const peakMesh = new THREE.Mesh(peakGeo, mountainMaterial);
+            peakMesh.position.set(peak.x, peak.y, peak.z);
+            peakMesh.rotation.y = Math.random() * Math.PI; // Random rotation
+            scene.add(peakMesh);
+            mountainPeaks.push(peakMesh);
+          });
+
+          return { mountain, mountainPeaks };
+        };
+
+        const mountains = createMountains();
+
+        // === LAYERED CLOUD SYSTEM ===
+
+        // Base fog layer (z=5) - Bottom/foreground layer that overlaps with mountains
+        const createBaseFogLayer = () => {
+          // Create a large disc geometry for the base planetary fog layer
+          const fogGeometry = new THREE.CircleGeometry(4000, 64);
+          const fogMaterial = new THREE.MeshStandardMaterial({
+            color: 0xcc99dd, // Pinkish-purple base fog
+            transparent: true,
+            opacity: 0.9,
+            side: THREE.DoubleSide,
+          });
+
+          const baseLayer = new THREE.Mesh(fogGeometry, fogMaterial);
+          baseLayer.rotation.x = -Math.PI / 2; // Horizontal plane
+          baseLayer.position.y = -300; // Bottom of the scene
+          scene.add(baseLayer);
+
+          // Create fog puffs (spheres) for texture at the base level
+          const puffs = [];
+          const puffCount = 150;
+
+          for (let i = 0; i < puffCount; i++) {
+            const puffSize = Math.random() * 200 + 150;
+            const puffGeometry = new THREE.SphereGeometry(puffSize, 8, 8);
+            const puffOpacity = Math.random() * 0.7 + 0.3;
+            const puffMaterial = new THREE.MeshStandardMaterial({
+              color: 0xbb88cc, // Slightly different shade for depth
+              transparent: true,
+              opacity: puffOpacity,
+              roughness: 0.6,
+            });
+
+            const puff = new THREE.Mesh(puffGeometry, puffMaterial);
+
+            // Position in the very bottom layer
+            const radius = 1200 + Math.random() * 1800;
+            const angle = Math.random() * Math.PI * 2;
+            const puffX = Math.cos(angle) * radius;
+            const puffY = -250 + Math.random() * 50; // Bottom fog layer (z=5)
+            const puffZ = Math.sin(angle) * radius - 800;
+
+            puff.position.set(puffX, puffY, puffZ);
+            scene.add(puff);
+            puffs.push(puff);
+          }
+
+          return { baseLayer, puffs };
+        };
+
+        // Mid fog layer (z=12+) - Lighter colored, behind some mountains but in front of others
+        const createMidFogLayer = () => {
+          const fogGeometry = new THREE.CircleGeometry(3500, 64);
+          const fogMaterial = new THREE.MeshStandardMaterial({
+            color: 0xccaaee, // Lighter pink
+            transparent: true,
+            opacity: 0.75,
+            side: THREE.DoubleSide,
+          });
+
+          const midLayer = new THREE.Mesh(fogGeometry, fogMaterial);
+          midLayer.rotation.x = -Math.PI / 2;
+          midLayer.position.set(0, -180, -700); // Mid-level position
+          scene.add(midLayer);
+
+          // Mid-level fog puffs
+          const puffs = [];
+          const puffCount = 120;
+
+          for (let i = 0; i < puffCount; i++) {
+            const puffSize = Math.random() * 180 + 100;
+            const puffGeometry = new THREE.SphereGeometry(puffSize, 8, 8);
+            const puffOpacity = Math.random() * 0.6 + 0.3;
+            const puffMaterial = new THREE.MeshStandardMaterial({
+              color: 0xddaade, // Another pinkish variant
+              transparent: true,
+              opacity: puffOpacity,
+              roughness: 0.7,
+            });
+
+            const puff = new THREE.Mesh(puffGeometry, puffMaterial);
+
+            // Position in the middle layer (z=12+)
+            const radius = 1000 + Math.random() * 1400;
+            const angle = Math.random() * Math.PI * 2;
+            const puffX = Math.cos(angle) * radius;
+            const puffY = -180 + Math.random() * 70;
+            const puffZ = Math.sin(angle) * radius - 700;
+
+            puff.position.set(puffX, puffY, puffZ);
+            scene.add(puff);
+            puffs.push(puff);
+          }
+
+          return { midLayer, puffs };
+        };
+
+        // Upper fog/cloud layer (z=9-) - Lightest, highest level that mountains pierce through
+        const createUpperFogLayer = () => {
+          const fogGeometry = new THREE.CircleGeometry(3000, 64);
+          const fogMaterial = new THREE.MeshStandardMaterial({
+            color: 0xddbbed, // Even lighter pinkish-lavender
+            transparent: true,
+            opacity: 0.6,
+            side: THREE.DoubleSide,
+          });
+
+          const upperLayer = new THREE.Mesh(fogGeometry, fogMaterial);
+          upperLayer.rotation.x = -Math.PI / 2;
+          upperLayer.position.set(0, -100, -900); // Upper level
+          scene.add(upperLayer);
+
+          // Upper cloud/fog puffs
+          const puffs = [];
+          const puffCount = 90;
+
+          for (let i = 0; i < puffCount; i++) {
+            const puffSize = Math.random() * 150 + 80;
+            const puffGeometry = new THREE.SphereGeometry(puffSize, 8, 8);
+            const puffOpacity = Math.random() * 0.5 + 0.2;
+            const puffMaterial = new THREE.MeshStandardMaterial({
+              color: 0xeeccee, // Almost white with pink tint
+              transparent: true,
+              opacity: puffOpacity,
+              roughness: 0.7,
+            });
+
+            const puff = new THREE.Mesh(puffGeometry, puffMaterial);
+
+            // Position in upper level (z=9-)
+            const radius = 800 + Math.random() * 1200;
+            const angle = Math.random() * Math.PI * 2;
+            const puffX = Math.cos(angle) * radius;
+            const puffY = -100 + Math.random() * 90;
+            const puffZ = Math.sin(angle) * radius - 800;
+
+            puff.position.set(puffX, puffY, puffZ);
+            scene.add(puff);
+            puffs.push(puff);
+          }
+
+          return { upperLayer, puffs };
+        };
+
+        // Distant horizon cloud layer (z=10/11) - Creates the planet-like horizon effect
+        const createHorizonCloudLayer = () => {
+          // Large curved plane to create horizon illusion
+          const horizonGeometry = new THREE.SphereGeometry(
+            5000,
+            64,
+            64,
+            0,
+            Math.PI * 2,
+            0,
+            Math.PI / 2
+          );
+          const horizonMaterial = new THREE.MeshStandardMaterial({
+            color: 0xaaaaee, // Bluish distant fog
+            transparent: true,
+            opacity: 0.5,
+            side: THREE.BackSide,
+          });
+
+          const horizonLayer = new THREE.Mesh(horizonGeometry, horizonMaterial);
+          horizonLayer.position.set(0, -4500, 0);
+          scene.add(horizonLayer);
+
+          // Distant cloud puffs along the horizon
+          const cloudPuffs = [];
+          const cloudPuffCount = 60;
+
+          for (let i = 0; i < cloudPuffCount; i++) {
+            const puffSize = Math.random() * 300 + 200;
+            const puffGeometry = new THREE.SphereGeometry(puffSize, 8, 8);
+            const puffOpacity = Math.random() * 0.4 + 0.1;
+            const puffMaterial = new THREE.MeshStandardMaterial({
+              color: 0xbbbbff, // Light blue-ish for distance
+              transparent: true,
+              opacity: puffOpacity,
+              roughness: 0.4,
+            });
+
+            const puff = new THREE.Mesh(puffGeometry, puffMaterial);
+
+            // Position along the horizon curve
+            const phi = Math.random() * Math.PI * 2;
+            const theta = Math.PI / 2 - Math.random() * 0.3; // Near horizon
+            const radius = 4800;
+
+            const puffX = radius * Math.sin(theta) * Math.cos(phi);
+            const puffY = radius * Math.cos(theta) - 4500; // Adjust to match horizon
+            const puffZ = radius * Math.sin(theta) * Math.sin(phi);
+
+            puff.position.set(puffX, puffY, puffZ);
+            scene.add(puff);
+            cloudPuffs.push(puff);
+          }
+
+          return { horizonLayer, cloudPuffs };
+        };
+
+        // Create all cloud/fog layers
+        const baseFog = createBaseFogLayer();
+        const midFog = createMidFogLayer();
+        const upperFog = createUpperFogLayer();
+        const horizonClouds = createHorizonCloudLayer();
+
+        // Resize handler
+        const handleResize = () => {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          renderer.setSize(width, height);
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+        };
+
+        window.addEventListener("resize", handleResize);
+
+        // Animation
+        let time = 0;
+        const animate = () => {
+          requestAnimationFrame(animate);
+
+          time += 0.003;
+
+          // Slowly rotate stars
+          stars.rotation.y += 0.0001;
+
+          // Pulse the moon glow
+          const glowScale = 1 + Math.sin(time * 0.5) * 0.1;
+          moonObj.moonGlow.scale.set(glowScale, glowScale, glowScale);
+
+          // Animate base fog puffs
+          baseFog.puffs.forEach((puff, index) => {
+            // Slowest movement for base layer
+            const angleOffset = time * 0.02 + index * 0.01;
+            puff.position.x += Math.sin(angleOffset) * 0.15;
+            puff.position.z += Math.cos(angleOffset) * 0.15;
+            puff.position.y += Math.sin(time * 0.1 + index * 0.05) * 0.05;
+
+            // Reset puffs if they drift too far
+            if (
+              Math.abs(puff.position.x) > 4000 ||
+              Math.abs(puff.position.z) > 4000
+            ) {
+              puff.position.set(
+                (Math.random() - 0.5) * 3000,
+                -250 + Math.random() * 50,
+                (Math.random() - 0.5) * 3000 - 800
+              );
+            }
+          });
+
+          // Animate mid fog puffs
+          midFog.puffs.forEach((puff, index) => {
+            // Medium speed for mid layer
+            const angleOffset = time * 0.04 + index * 0.02;
+            puff.position.x += Math.sin(angleOffset) * 0.25;
+            puff.position.z += Math.cos(angleOffset) * 0.25;
+            puff.position.y += Math.sin(time * 0.15 + index * 0.05) * 0.1;
+
+            // Reset puffs if they drift too far
+            if (
+              Math.abs(puff.position.x) > 3500 ||
+              Math.abs(puff.position.z) > 3500
+            ) {
+              puff.position.set(
+                (Math.random() - 0.5) * 2500,
+                -180 + Math.random() * 70,
+                (Math.random() - 0.5) * 2500 - 700
+              );
+            }
+          });
+
+          // Animate upper fog puffs
+          upperFog.puffs.forEach((puff, index) => {
+            // Faster movement for upper layer
+            const angleOffset = time * 0.06 + index * 0.03;
+            puff.position.x += Math.sin(angleOffset) * 0.35;
+            puff.position.z += Math.cos(angleOffset) * 0.35;
+            puff.position.y += Math.sin(time * 0.2 + index * 0.05) * 0.15;
+
+            // Reset puffs if they drift too far
+            if (
+              Math.abs(puff.position.x) > 3000 ||
+              Math.abs(puff.position.z) > 3000
+            ) {
+              puff.position.set(
+                (Math.random() - 0.5) * 2000,
+                -100 + Math.random() * 90,
+                (Math.random() - 0.5) * 2000 - 800
+              );
+            }
+          });
+
+          // Animate horizon clouds - very slow movement
+          horizonClouds.cloudPuffs.forEach((puff, index) => {
+            // Subtle movement for distant clouds
+            const angleOffset = time * 0.01 + index * 0.005;
+
+            // Create very subtle movement along the horizon
+            const phi =
+              (index / horizonClouds.cloudPuffs.length) * Math.PI * 2 +
+              time * 0.01;
+            const theta = Math.PI / 2 - Math.random() * 0.3;
+            const radius = 4800;
+
+            // Subtle drift along the curved horizon
+            puff.position.x += Math.sin(angleOffset) * 0.1;
+            puff.position.z += Math.cos(angleOffset) * 0.1;
+
+            // Reset puffs if they drift too far
+            if (
+              Math.abs(puff.position.x) > 5000 ||
+              Math.abs(puff.position.z) > 5000
+            ) {
+              const newPhi = Math.random() * Math.PI * 2;
+              const newTheta = Math.PI / 2 - Math.random() * 0.3;
+
+              puff.position.set(
+                radius * Math.sin(newTheta) * Math.cos(newPhi),
+                radius * Math.cos(newTheta) - 4500,
+                radius * Math.sin(newTheta) * Math.sin(newPhi)
+              );
+            }
+          });
+
+          // Add subtle movement to cloud layers
+          baseFog.baseLayer.rotation.z = Math.sin(time * 0.05) * 0.02;
+          midFog.midLayer.rotation.z = Math.sin(time * 0.07) * 0.03;
+          upperFog.upperLayer.rotation.z = Math.sin(time * 0.09) * 0.04;
+
+          renderer.render(scene, camera);
+        };
+
+        animate();
+
+        // Cleanup
+        return () => {
+          window.removeEventListener("resize", handleResize);
+          renderer.domElement.remove();
+        };
+      });
+    </script>
   </body>
 </html>

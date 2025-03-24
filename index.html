@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../style/landing3.css" />
     <title>Asa Schaeffer</title>
@@ -13,73 +14,45 @@
       <nav id="sitewide-links">
         <menu>
           <li>
-            <a target="_blank" href="/building/">Mission Statement</a>
+            <a target="_blank" href="/head-space/mission.html"
+              >Mission Statement</a
+            >
           </li>
           <li><a href="/works/index.html">Works</a></li>
           <li><a href="/head-space/index.html">Documentation</a></li>
-          <li><a href="/team/index2.html">Team</a></li>
-          <li><a href="/contact/index.html">Contact</a></li>
+          <li><a href="/team/index.html">Team</a></li>
+          <!--      <li><a href="/contact/index.html">Contact</a></li>-->
         </menu>
       </nav>
     </header>
     <main>
       <article id="landing" class="page">
         <div class="background">
-          <div class="nebula-container">
-            <a href="/head-space/index.html"
-              ><img
-                src="../assets/art/Images-Starry-Night-Wallpapers-HD-2955665120.jpg"
-                alt="starry night"
-            /></a>
-          </div>
-          <div class="mountain">
-            <a href="/works/index.html"
-              ><img
-                src="/assets/art/an-intricate-and-breathtaking-landscape-of-majestic-mountains-cast-against-a-transparent-background-allowing-for-a-sense-of-vastness-and-uncharted-terrain.png"
-                alt="mountain peak"
-            /></a>
-          </div>
-          <div class="fog">
-            <a href="#magical-forest"
-              ><img
-                src="/assets/art/cloud-nature-tree-fog-HD-wallpaper-alphacoders.jpg"
-                alt="foggy trees"
-            /></a>
-          </div>
+          <map name="background-map">
+            <area
+              shape="rect"
+              coords="0,0,100%,50%"
+              href="obsidian-docs"
+              alt="Obsidian Docs"
+              class="nebula-area" />
+          </map>
+          <!-- Clickable mountain overlay -->
+          <a href="https://github.com/asavschaeffer" class="mountain-link"></a>
+          <!-- Animated fog -->
+          <div id="vanta-fog"></div>
         </div>
 
         <section class="blob">
-          <h1>inter activity</h1>
-          <p>
-            This website aims to optimize interactivity with responsiveness,
-            using efficient fog keyframes to play with the position of the mouse
-            and obscure elements on screen. By changing the size of elements on
-            hover, the fog can be pushed down while revealing additional
-            content. The theme is the development process as a mountain, and the
-            mind as a universe. The highlighted development process exists as
-            one planet in that universe, which can be explored further by
-            scrolling down through the fog, or abandoned by choosing to explore
-            the stars beyond.
-          </p>
+          <h1>Asa Schaeffer</h1>
         </section>
       </article>
 
       <article id="magical-forest" class="page">
-        <div class="background">
-          <div class="fog">
-            <a href="#landing"
-              ><img
-                src="/assets/art/cloud-nature-tree-fog-HD-wallpaper-alphacoders.jpg"
-                alt="foggy trees"
-            /></a>
-          </div>
-        </div>
         <section class="blob">
           <h2>Design</h2>
           <img
             src="/images/icons/folded-cube-diagram-pinterest.png"
-            alt="Design icon"
-          />
+            alt="Design icon" />
           <div class="text-container">
             <p>
               cognitive systems research to establish robust frameworks before
@@ -106,8 +79,7 @@
         <section class="blob">
           <img
             src="/images/icons/cube-progress-bars-vertices-angles-face.jpg"
-            alt=""
-          />
+            alt="" />
           <h2>Production</h2>
           <div class="text-container">
             <p>
@@ -120,7 +92,6 @@
               <p>"you can't see the forest for the trees"</p>
               <footer>- John Heywood</footer>
             </blockquote>
-  
           </div>
         </section>
       </article>
@@ -130,14 +101,19 @@
           <h2>Programming</h2>
           <img
             src="/images/icons/cube-side-angle-measaure-sigma-alpha-delta-cross-section-gemini-generated.jpg"
-            alt="Programming icon"
-          />
+            alt="Programming icon" />
           <div class="text-container">
             <ul>
               <li>Gemini and GPT to research methodology and documentation</li>
-              <li>use Grok 3 massive context window to dump code context, research, and change requests.</li>
-              <li>grok's excellent prompt engineering training serves instructions to Claude 3.7 Sonnet for code</li>
-          </ul>
+              <li>
+                use Grok 3 massive context window to dump code context,
+                research, and change requests.
+              </li>
+              <li>
+                grok's excellent prompt engineering training serves instructions
+                to Claude 3.7 Sonnet for code
+              </li>
+            </ul>
           </div>
         </section>
       </article>
@@ -146,8 +122,7 @@
         <section class="blob">
           <img
             src="/images/icons/cube-slime-paint-splatter-spatter-dripping-ai-gemini-line-art-image.jpg"
-            alt=""
-          />
+            alt="" />
           <h2>the arts</h2>
           <div class="text-container">
             <p>
@@ -161,8 +136,7 @@
         <section class="blob">
           <img
             src="/images/icons/fist-fingers-close-around-3d-cube-breaking-force-ai-gemini-generated.jpg"
-            alt=""
-          />
+            alt="" />
           <h2>testing</h2>
           <div class="text-container">
             <p>

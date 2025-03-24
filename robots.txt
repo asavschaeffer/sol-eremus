@@ -1,1 +1,2 @@
-hi robots
+User-agent: *
+Disallow: /
